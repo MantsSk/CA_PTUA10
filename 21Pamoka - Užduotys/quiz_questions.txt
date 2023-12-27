@@ -1,0 +1,34 @@
+What is the capital of France?
+a. Berlin
+b. Paris
+c. Rome
+d. Madrid
+2
+
+What is the largest planet in our solar system?
+a. Earth
+b. Jupiter
+c. Mars
+d. Venus
+2
+
+Which programming language is known for its readability and simplicity?
+a. Java
+b. Python
+c. C++
+d. Ruby
+2
+
+What is the powerhouse of the cell?
+a. Nucleus
+b. Mitochondria
+c. Endoplasmic reticulum
+d. Golgi apparatus
+2
+
+Who wrote "Romeo and Juliet"?
+a. Charles Dickens
+b. William Shakespeare
+c. Jane Austen
+d. Mark Twain
+2
