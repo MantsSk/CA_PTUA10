@@ -17,7 +17,7 @@ class Person:
     def get_name(self):
         return self.__name
 
-    def canVote(self):
+    def can_vote(self):
         return self.__age >= 18
 
 
