@@ -1,7 +1,8 @@
 class Person:
     def __init__(self, name, age):
-        self.__name = self.set_name(name)
-        self.__age = self.set_age(age)
+        self.__name = name
+        self.__age = age
+
     def set_age(self, age):
         if 0 < age < 120:  # Simple validation logic
             self.__age = age
@@ -23,3 +24,4 @@ class Person:
 
 person = Person("John", 22)
 print(person.get_age())
+print(person.can_vote())
