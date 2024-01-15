@@ -1,0 +1,4 @@
+1. Best car ? BMW,AUDI,TOYOTA, NISSAN :Answer TOYOTA
+2. Worst car ? BMW,AUDI,TOYOTA, NISSAN :Answer AUDI
+3. Best motorcycle ? KTM, YAMAHA, BMW, HONDA :Answer HONDA
+4. Worst motorcycle ? KTM, YAMAHA, BMW, HONDA :Answer KTM
