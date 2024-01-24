@@ -1,6 +1,6 @@
 class Temperature:
-    def __init__(self, celsius=0):
-        self._celsius = celsius  # Protected attribute
+    def __init__(self, celsius):
+        self._celsius = celsius
 
     @property
     def celsius(self):
@@ -8,22 +8,13 @@ class Temperature:
 
     @celsius.setter
     def celsius(self, value):
-        if -273.15 <= value:
-            self._celsius = value
-        else:
-            raise ValueError("Temperature below absolute zero is not possible")
+        self._celsius = value
 
     @property
     def fahrenheit(self):
-        return (self._celsius * 9/5) + 32
+        return (self.celsius * 1.8) + 32
 
-    @fahrenheit.setter
-    def fahrenheit(self, value):
-        self._celsius = (value - 32) * 5/9
-
-# Example Usage
-temp = Temperature()
-temp.celsius = 25
-print(temp.fahrenheit)  # Output: 77.0
-temp.fahrenheit = 32
-print(temp.celsius)  # Output: 0.0
+t = Temperature(20)
+t.celsius = 20
+print(t.celsius)
+print(t.fahrenheit)
