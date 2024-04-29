@@ -43,7 +43,6 @@ def register():
         new_user = User(username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        session['username'] = username
         return redirect(url_for('login'))
     return render_template('register.html')
 
