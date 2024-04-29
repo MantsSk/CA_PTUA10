@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # Change the databa
 db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'home'
+login_manager.login_view = "home"
 
 bcrypt = Bcrypt(app)
 
@@ -20,26 +20,22 @@ class User(UserMixin, db.Model):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
-
+    return User.query.get(user_id)
 
 @app.route('/')
 def home():
-    if current_user.is_authenticated:
-        username = current_user.username
-    else:
-        username = None
-    return render_template('index.html', username=username)
+    return render_template('index.html')
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['username'] 
+        password = request.form['password'] 
         user = User.query.filter_by(username=username).first()
         if user:
             return render_template('register.html', message='Username already exists')
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
         new_user = User(username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
@@ -49,8 +45,8 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['username'] 
+        password = request.form['password']  
         user = User.query.filter_by(username=username).first()
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
@@ -58,7 +54,6 @@ def login():
         else:
             return render_template('login.html', message='Invalid username or password')
     return render_template('login.html')
-
 
 @app.route('/logout')
 @login_required
