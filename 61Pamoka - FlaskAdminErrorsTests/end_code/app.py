@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_bcrypt import Bcrypt
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 import datetime
 
 app = Flask(__name__)
@@ -13,6 +15,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'home'
 
 bcrypt = Bcrypt(app)
+admin = Admin(app)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -27,6 +30,14 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', back_populates='author', lazy=True)
+
+class AdminModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.username == "admin"
+
+admin.add_view(AdminModelView(User, db.session))
+admin.add_view(AdminModelView(Post, db.session))
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -85,6 +96,10 @@ def new_post():
         db.session.commit()
         return redirect(url_for('home'))
     return render_template('create_post.html', title='New Post')
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     with app.app_context():
