@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Mano knygos!</h1>
+<ul>
+{% for book_instance in book_instance_list %}
+    <li>{{ book_instance.book.title }} ({{ book_instance.due_back }})</li>
+{% endfor %}
+</ul>
+{% endblock content%}
